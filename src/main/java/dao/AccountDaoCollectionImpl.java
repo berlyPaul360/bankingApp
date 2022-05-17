@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import Exceptions.InsufficientFundsException;
 import dao.AccountDao;
 import model.AccountPojo;
 
@@ -12,12 +13,12 @@ public class AccountDaoCollectionImpl implements AccountDao{
 	
 	public AccountDaoCollectionImpl() {
 		
-		AccountPojo account1 = new AccountPojo(101, 20.00, "berl", "paul");
-		AccountPojo account2 = new AccountPojo(102, 100.00, "Sam", "Wilson");
-		AccountPojo account3 = new AccountPojo(103, 0.00, "Tom", "Cat");
-		allAccounts.add(account1);
-		allAccounts.add(account2);
-		allAccounts.add(account3);
+//		AccountPojo account1 = new AccountPojo(101, 20.00, "berl", "paul");
+//		AccountPojo account2 = new AccountPojo(102, 100.00, "Sam", "Wilson");
+//		AccountPojo account3 = new AccountPojo(103, 0.00, "Tom", "Cat");
+//		allAccounts.add(account1);
+//		allAccounts.add(account2);
+//		allAccounts.add(account3);
 	}
 
 	@Override
@@ -74,8 +75,14 @@ public class AccountDaoCollectionImpl implements AccountDao{
 
 	@Override
 	public List<AccountPojo> getAllAccounts() {
-		
+		// TODO Auto-generated method stub
 		return allAccounts;
+	}
+
+	@Override
+	public void transferMoney(int fromAccountId, int toAccountId, double amount) throws InsufficientFundsException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

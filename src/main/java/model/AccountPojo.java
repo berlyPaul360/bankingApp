@@ -4,20 +4,21 @@ public class AccountPojo {
 	
 	private int accountId;
 	private double accountBalance;
-	private String firstName;
-	private String lastName;
+	private String Name;
+	  
+
 	
 	public AccountPojo() {
 		super();
 		
 	}
 
-	public AccountPojo(int accountId, double accountBalance, String firstName, String lastName) {
+	public AccountPojo(int accountId, double accountBalance, String Name) {
 		super();
 		this.accountId = accountId;
 		this.accountBalance = accountBalance;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.Name = Name;
+		;
 	}
 
 	public int getAccountId() {
@@ -36,29 +37,19 @@ public class AccountPojo {
 		this.accountBalance = accountBalance;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return Name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setName(String name) {
+		Name = name;
 	}
 
 	@Override
 	public String toString() {
-		return "AccountPojo [accountId=" + accountId + ", accountBalance=" + accountBalance + ", firstName=" + firstName
-				+ ", lastName=" + lastName + "]";
+		return "AccountPojo [accountId=" + accountId + ", accountBalance=" + accountBalance + ", Name=" + Name + "]";
 	}
-	
-	
+
 	
 	
 
