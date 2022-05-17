@@ -43,14 +43,25 @@ public class BankingApp {
 
 			// Inside switch to Logon
 			case 1:
-				System.out.println("Please enter your user name");
-				String username = scan.next();
+				//
+				List<CustomerPojo> everyCustomer = customerService.getAllUsers();
+				CustomerPojo validCustomerPojo = new CustomerPojo();
+				
 				System.out.println();
+				int option1 = 0;
 				List<AccountPojo> everyAccount = accountService.getAllAccounts();
-				//for (int i = 0; i < everyAccount.size(); i++) {
+				for (int i = 0; i < everyCustomer.size(); i++) {
 					// if UserName is found then display the menu
-					//if (everyAccount.get(i).getName().equals(username)) {
-
+					System.out.println("Please enter your user name");
+					validCustomerPojo.setUserName(scan.nextLine());
+					if (everyCustomer.get(i).getUserName().equals(validCustomerPojo.getUserName())) {
+						
+						break;
+						
+					} else {
+						System.out.println("No such User-Name Found");
+					}
+				}
 						System.out.println("*******************************************");
 						System.out.println("EMPLOYEE BANKING APPLICATION SYSTEM");
 						System.out.println("*******************************************");
@@ -62,15 +73,18 @@ public class BankingApp {
 						System.out.println("*********************************************");
 						System.out.println("Please enter an Option");
 
-						int option1 = scan.nextInt();
+						option1 = scan.nextInt();
 						System.out.println("*********************************************");
+					
+										
+				
 						
 				while (proceed == 'y') {
 				
 					switch (option1) {
 
 					case 1:
-
+						
 						System.out.println("*******************************************************************");
 						System.out.println("ACCOUNT ID\tACCOUNT NAME\tACCOUNT BALANCE");
 						everyAccount.forEach((item) -> System.out.println(
@@ -91,12 +105,11 @@ public class BankingApp {
 						System.out.println("Thank you for using Our Banking App!! ");
 						System.exit(0);
 					}
-					//					} else {
-					//						System.out.println("No such User-Name Found");
-					//					}
+					//					
 					break;
 				}
-			//}
+				
+			
 	//registering a new account/customer			
 			case 2:
 				AccountPojo newAccountPojo = new AccountPojo();
@@ -113,8 +126,10 @@ public class BankingApp {
 				newAccountPojo.setAccountBalance(scan.nextDouble());
 				System.out.println("Please enter a new user name : ");
 				newCustomerPojo.setUserName(scan.nextLine());
-				//create Username input
-				//create password input
+				scan.nextLine();
+				System.out.println("Please enter a new password");
+				newCustomerPojo.setPassword(scan.nextLine());
+				
 				AccountPojo accountPojo = null;
 				CustomerPojo customerPojo = null;
 				try {
@@ -127,9 +142,10 @@ public class BankingApp {
 				System.out.println("*************************************");
 				System.out.println("New Account added successfully! ");
 				break;
-			}
+			
 
 		}
 
 	}
+}
 }

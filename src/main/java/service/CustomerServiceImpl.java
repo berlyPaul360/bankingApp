@@ -1,9 +1,12 @@
 package service;
 
+import java.util.List;
+
 import Exceptions.NoAccountsException;
 import dao.CustomerDao;
 import dao.CustomerDaoDatabaseImpl;
 import model.CustomerPojo;
+
 
 public class CustomerServiceImpl implements CustomerService {
 	
@@ -19,8 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public CustomerPojo validateUser(CustomerPojo customerPojo) throws NoAccountsException {
-		return customerDao.validateUser(customerPojo);
+  public boolean getAllUsers(CustomerPojo valid) throws NoAccountsException {
+		return customerDao.getAllUsers(valid);
 	}
 
 }
