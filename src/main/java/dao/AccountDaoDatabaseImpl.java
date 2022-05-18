@@ -35,25 +35,27 @@ public class AccountDaoDatabaseImpl implements AccountDao{
 	}
 
 	@Override
-	public AccountPojo updateAccount(AccountPojo accountPojo) throws SystemException {
+	public void addMoney(double deposit, int accountId) throws SystemException {
 		Connection conn = null;
 		try {
 			conn = DBUtil.makeConnection();
 			Statement stmt = conn.createStatement();
-			String query = "UPDATE account_details SET account_name="+accountPojo.getName()+ "WHERE account_id="+accountPojo.getAccountId();
+			String query = "UPDATE account_details SET account_balance=account_balance+"+deposit+ "WHERE account_id="+accountId;
 			int rowsAffected = stmt.executeUpdate(query);
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 			throw new SystemException();
 		}
-		return accountPojo;
+		
+		System.out.println("DEPOSIT MADE ");
+		
 	}
 
 	@Override
 	public void deleteAccount(int accountId) throws SystemException {
-		// TODO Auto-generated method stub
+		
 		Connection conn = null;
 		try {
 			conn = DBUtil.makeConnection();
@@ -61,7 +63,7 @@ public class AccountDaoDatabaseImpl implements AccountDao{
 			String query = "DELETE FROM account_details WHERE account_id="+accountId;
 			int rowsAffected = stmt.executeUpdate(query);
 		} catch (SQLException e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 			throw new SystemException();
 		}
@@ -70,7 +72,7 @@ public class AccountDaoDatabaseImpl implements AccountDao{
 
 	@Override
 	public AccountPojo getAccount(int accountId) throws SystemException {
-		// TODO Auto-generated method stub
+		
 		Connection conn = null;
 		AccountPojo accountPojo = null;
 		try {
@@ -82,7 +84,7 @@ public class AccountDaoDatabaseImpl implements AccountDao{
 				accountPojo = new AccountPojo(result.getInt(1),result.getDouble(2),result.getString(3));
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 			throw new SystemException();
 		}
@@ -91,7 +93,7 @@ public class AccountDaoDatabaseImpl implements AccountDao{
 
 	@Override
 	public List<AccountPojo> getAllAccounts() throws SystemException {
-		// TODO Auto-generated method stub
+		
 		Connection conn = null;
 		AccountPojo accountPojo = null;
 		List <AccountPojo> allAccounts= new ArrayList<>();  
@@ -119,14 +121,14 @@ public class AccountDaoDatabaseImpl implements AccountDao{
 		
 		try {
 			conn = DBUtil.makeConnection();
-			CallableStatement cstmt = conn.prepareCall("CALL transferMoney(?)");
+			CallableStatement cstmt = conn.prepareCall("call transfer_money(?,?,?)");
 			cstmt.setInt(1, fromAccountId);
 			cstmt.setInt(2, toAccountId);
 			cstmt.setDouble(3, amount);
 			cstmt.execute();
 			
 		} catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		System.out.println("Transfer Performed");
 	}

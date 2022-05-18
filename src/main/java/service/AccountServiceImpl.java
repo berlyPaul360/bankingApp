@@ -24,9 +24,10 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public AccountPojo updateAccount(AccountPojo accountPojo) throws SystemException {
+	public
+	void addMoney(double deposit, int accountId) throws SystemException {
 		
-		return accountDao.updateAccount(accountPojo);
+		 accountDao.addMoney(deposit,accountId);
 	}
 
 	@Override

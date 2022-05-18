@@ -14,7 +14,7 @@ public interface AccountService {
 
 	AccountPojo addAccount(AccountPojo accountPojo) throws SystemException;// Create
 
-	AccountPojo updateAccount(AccountPojo accountPojo) throws SystemException;// Update
+	void addMoney(double deposit, int accountId) throws SystemException;//Update// Update
 
 	void deleteAccount(int accountId) throws SystemException;// Delete
 

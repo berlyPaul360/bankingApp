@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import Exceptions.InsufficientFundsException;
+import Exceptions.SystemException;
 import dao.AccountDao;
 import model.AccountPojo;
 
@@ -35,7 +36,7 @@ public class AccountDaoCollectionImpl implements AccountDao{
 		
 	}
 
-	@Override
+
 	public AccountPojo updateAccount(AccountPojo accountPojo) {
 		for(int i = 0;i< allAccounts.size(); i++) {
 			if(allAccounts.get(i).getAccountId()== accountPojo.getAccountId()) {
@@ -81,6 +82,12 @@ public class AccountDaoCollectionImpl implements AccountDao{
 
 	@Override
 	public void transferMoney(int fromAccountId, int toAccountId, double amount) throws InsufficientFundsException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMoney(double deposit, int accountId) throws SystemException {
 		// TODO Auto-generated method stub
 		
 	}
